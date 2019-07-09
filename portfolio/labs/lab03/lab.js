@@ -1,12 +1,12 @@
 function readFiles(files){
     var output=[];
     for(var i=0,f;f=files[i];i++){
-        output.push('<li><strong>',escape(f.name),'</strong>(',f.type||'n/a',')-',
-            f.size,'bytes,last modified:',
-            f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString():'n/a',
-            '<li>');
+        output.push('<li><strong>',escape(f.name),'</strong>(',f.type || 'n/a', ')-',
+            f.size,' bytes,last modified: ',
+            f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+            '</li>');
     }
-    document.getElementById('list').innerHTML='<ul>'+output.jion('')+'</ul>';
+    document.getElementById('list').innerHTML='<ul>'+output.join('')+'</ul>';
 
     document.getElementById('content').innerHTML='';
     document.getElementById('svgimage').innerHTML='';
@@ -30,14 +30,14 @@ function readFiles(files){
         }
     }
     function handleFileSelect(evt){
-        var files=evt.target.files;
+        var files = evt.target.files;
 
         readFiles(files);
     }
     function handleFileSelect_drag(evt){
         evt.stopPropagation();
         evt.preventDefault();
-        var files=evt.dataTransfer.files;
+        var files = evt.dataTransfer.files;
 
         readFiles(files);
     }
@@ -48,10 +48,9 @@ function readFiles(files){
     }
     function start(e){
         document.getElementById('files').addEventListener('change', handleFileSelect,false);
-        var dropZone=document.getElementById('drop_zone');
-        dropZone.addEventListener('dragover',handleDragover,false);
+        var dropZone = document.getElementById('drop_zone');
+        dropZone.addEventListener('dragover',handleDragOver,false);
         dropZone.addEventListener('drop',handleFileSelect_drag,false);
     }
 
     window.addEventListener("load",start,false);
-}
